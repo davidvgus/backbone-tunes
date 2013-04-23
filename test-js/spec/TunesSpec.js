@@ -48,4 +48,8 @@ describe("Album", function () {
       });
     });
 
+    it("returns the url for a track", function(){
+      expect(this.album.trackUrlAtIndex(0)).toEqual('/music/Album A Track A.mp3');
+    });
+
 });
