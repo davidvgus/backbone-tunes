@@ -1,8 +1,12 @@
+/*global Backbone  */
+/*global Album */
+/*global _ */
+
 (function($) {
   window.Album = Backbone.Model.extend({
 
     isFirstTrack: function(index){
-      return index == 0;
+      return index === 0;
     },
 
     isLastTrack: function(index){
@@ -16,6 +20,11 @@
       return null;
     }
 
+  });
+
+  window.Albums = Backbone.Collection.extend({
+    model: Album,
+    url: '/albums'
   });
 
   window.AlbumView = Backbone.View.extend({

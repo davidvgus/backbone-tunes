@@ -1,3 +1,9 @@
+/*global beforeEach */
+/*global Album */
+/*global it */
+/*global expect */
+/*global describe */
+
 var albumData = [{
     "title":  "Album A",
     "artist": "Artist A",
