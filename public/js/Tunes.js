@@ -1,5 +1,6 @@
 /*global Backbone  */
 /*global Album */
+/*global AlbumView */
 /*global _ */
 
 (function($) {
@@ -45,5 +46,17 @@
       return this;
     }
   });
+
+  window.LibraryAlbumView = AlbumView.extend({
+  });
+
+  window.LibraryView = Backbone.View.extend({
+    initialize: function(){
+      _.bindAll(this, 'render');
+      this.template = _.template($('#library-template').html());
+    }
+  });
+
+
 
 })(jQuery);
