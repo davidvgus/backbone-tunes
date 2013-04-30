@@ -1,6 +1,8 @@
+/*global console */
 /*global Backbone  */
 /*global Album */
 /*global Albums */
+/*global Playlist */
 /*global AlbumView */
 /*global LibraryAlbumView */
 /*global LibraryView */
@@ -32,6 +34,36 @@
     url: '/albums'
   });
 
+  window.Playlist = Albums.extend({
+
+    isFirstAlbum: function(index){
+      return (index === 0);
+    },
+    isLastAlbum: function(index) {
+      return (index === (this.models.length - 1));
+    }
+  });
+
+  window.Player = Backbone.Model.extend({
+    defaults: {
+      'currentAlbumIndex': 0,
+      'currentTrackIndex': 0,
+      'state': 'stop'
+    },
+
+    initialize: function() {
+      this.playlist = new Playlist();
+    },
+
+    play: function() {
+      this.set({'state': 'play'});
+    },
+
+    pause: function() {
+      this.set({'state': 'pause'});
+    }
+  });
+
   window.library = new Albums();
 
   window.AlbumView = Backbone.View.extend({
@@ -54,6 +86,14 @@
   });
 
   window.LibraryAlbumView = AlbumView.extend({
+    events: {
+      'click .queue.add': 'select'
+    },
+
+    select: function() {
+      this.collection.trigger('select', this.model);
+      console.log("Triggered select", this.model);
+    }
   });
 
   window.LibraryView = Backbone.View.extend({
