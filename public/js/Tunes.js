@@ -85,7 +85,8 @@
 
   window.BackboneTunes = Backbone.Router.extend({
     routes: {
-      '': 'home'
+      '': 'home',
+      'blank': 'blank'
     },
 
     initialize: function() {
@@ -98,12 +99,17 @@
       var $container = $('#container');
       $container.empty();
       $container.append(this.libraryView.render().el);
+    },
+
+    blank: function(){
+      $('#container').empty();
+      $('#container').text('blank');
     }
   });
 
   $(function() {
     window.App = new BackboneTunes();
-    Backbone.history.start({});
+    Backbone.history.start({pushState: true});
   });
 
 
