@@ -4,6 +4,7 @@
 /*global AlbumView */
 /*global LibraryAlbumView */
 /*global LibraryView */
+/*global BackboneTunes */
 /*global _ */
 
 (function($) {
@@ -89,12 +90,20 @@
 
     initialize: function() {
        this.libraryView = new LibraryView({
-         collection: window.Library
+         collection: window.library
        });
     },
 
     home: function(){
+      var $container = $('#container');
+      $container.empty();
+      $container.append(this.libraryView.render().el);
     }
+  });
+
+  $(function() {
+    window.App = new BackboneTunes();
+    Backbone.history.start({});
   });
 
 
