@@ -107,6 +107,14 @@ nav button.next:hover {
     display: none;
 }
 
+.library .album .queue.remove {
+    display: none;
+}
+
+.library .album .tracks {
+    display: none;
+}
+
 .playlist .album.current {
 }
 

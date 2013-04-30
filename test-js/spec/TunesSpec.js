@@ -1,5 +1,6 @@
 /*global beforeEach */
 /*global Album */
+/*global Playlist */
 /*global it */
 /*global expect */
 /*global describe */
@@ -58,4 +59,29 @@ describe("Album", function () {
       expect(this.album.trackUrlAtIndex(0)).toEqual('/music/Album A Track A.mp3');
     });
 
+});
+
+describe("Playlist", function(){
+  beforeEach(function(){
+    this.playlist = new Playlist();
+    this.playlist.add(albumData[0]);
+  });
+
+  it("identifies first album as first", function(){
+    expect(this.playlist.isFirstAlbum(0)).toBeTruthy();
+  });
+
+  it("rejects non-first album as first", function(){
+    expect(this.playlist.isFirstAlbum(1)).toBeFalsy();
+  });
+
+  it("identifies last album as last", function(){
+    this.playlist.add(albumData[1]);
+    expect(this.playlist.isLastAlbum(1)).toBeTruthy();
+  });
+
+  it("rejects non-last album as last", function(){
+    this.playlist.add(albumData[1]);
+    expect(this.playlist.isLastAlbum(0)).toBeFalsy();
+  });
 });
