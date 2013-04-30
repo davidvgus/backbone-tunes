@@ -1,7 +1,9 @@
 /*global Backbone  */
 /*global Album */
+/*global Albums */
 /*global AlbumView */
 /*global LibraryAlbumView */
+/*global LibraryView */
 /*global _ */
 
 (function($) {
@@ -28,6 +30,8 @@
     model: Album,
     url: '/albums'
   });
+
+  window.library = new Albums();
 
   window.AlbumView = Backbone.View.extend({
     tagName: 'li',
@@ -75,6 +79,21 @@
         $albums.append(view.render().el);
       });
       return this;
+    }
+  });
+
+  window.BackboneTunes = Backbone.Router.extend({
+    routes: {
+      '': 'home'
+    },
+
+    initialize: function() {
+       this.libraryView = new LibraryView({
+         collection: window.Library
+       });
+    },
+
+    home: function(){
     }
   });
 
